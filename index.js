@@ -1,33 +1,46 @@
 //o código abaixo roda no site playcode.io/javascript
 
-let nivel = "";
-
-let nomeDoHeroi = "";
-while(nomeDoHeroi === ""){
-nomeDoHeroi = prompt("Qual é o nome do seu herói? (Digite o nome)");
+let numberOfVictories = "";
+while(numberOfVictories === ""){
+numberOfVictories = prompt("Qual o número de vitórias do seu herói? (Digite o número de vitórias)");
 }
 
-let xp = 0;
-while(xp <= 0){
-xp = prompt("Qual é a quantidade de experiência (XP) de " + nomeDoHeroi + "? (Digitar um valor maior que zero)");
+let numberOfDefeats = "";
+while(numberOfDefeats === ""){
+numberOfDefeats = prompt("Qual o número de derrotas do seu herói? (Digite o número de derrotas)");
 }
 
-if(xp <= 1000){
-nivel = "Ferro"
-}else if(xp > 1000 && xp <= 2000){
-nivel = "Bronze"
-}else if(xp > 2000 && xp <= 5000){
-nivel = "Prata"
-}else if(xp > 5000 && xp <= 7000){
-nivel = "Ouro"
-}else if(xp > 7000 && xp <= 8000){
-nivel = "Platina"
-}else if(xp > 8000 && xp <= 9000){
-nivel = "Ascendente"
-}else if(xp > 9000 && xp <= 10000){
-nivel = "Imortal"
-}else {
-nivel = "Radiante"
+let balance = calculateBalance(numberOfVictories, numberOfDefeats);
+let level = "";
+
+function calculateBalance(a, b){
+    let calculus = a - b
+    return calculus
 }
 
-console.log("O herói de nome " + nomeDoHeroi + " está no nível " + nivel + ".");
+let response = rank(balance);
+
+function rank(c){
+    if (c < 0){
+        let messageNeg = console.log("O herói não possui saldo positivo de vitórias.")
+        return messageNeg    
+    }else {
+        if(c >= 0 && c <= 10){
+        level = "Ferro"
+        }else if(c > 10 && c <= 20){
+        level = "Bronze"
+        }else if(c > 20 && c <= 50){
+        level = "Prata"
+        }else if(c > 50 && c <= 80){
+        level = "Ouro"
+        }else if(c > 80 && c <= 90){
+        level = "Diamante"
+        }else if(c > 90 && c <= 100){
+        level = "Lendário"
+        }else {
+        level = "Imortal"
+        }
+        let messagePos = console.log("O herói tem saldo de " + c + " vitórias e está no nível " + level + ".")
+        return messagePos
+    }
+}
